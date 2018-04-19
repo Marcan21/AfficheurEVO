@@ -16,7 +16,6 @@ byte len = 0;
 byte buf[8];
 char str[20];
 
-
 unsigned int caseCan;
 
 int rpm=0;
@@ -83,34 +82,30 @@ void MCP2515_ISR()
 
 void loop()
 {   
-    /*if (rpm > 5000)
-    {
-       rpm=0;
-       
-    }
+    if (rpm > 5000) rpm=0;  
     rpm = rpm+30;
     Serial.println(rpm);
-    delay(50);*/
+    delay(50);
     //Serial.println();
       
     // read and parse data from CAN Bus 
-    /*********CAN.readMsgBuf(&len, buf);
+    CAN.readMsgBuf(&len, buf);
     caseCan = CAN.getCanId();      
     Serial.println(caseCan);                                                     
     switch (caseCan) {
       case 1512:
       rpm = buf[2] + buf[3];
       Serial.println(caseCan);  
-    /*switch (caseCan) {
+    switch (caseCan) {
         case 1520:
           // RPMs are the 7th and 8th byte from CAN ID 1520
           rpm.input = 256*buf[6]+buf[7];
           break;
-      Serial.println(rpm);*/
-      //break;
+      Serial.println(rpm);
+      break;
 
     delay(3);
-    /*if(flagRecv)                   // check if get data
+    if(flagRecv)                   // check if get data
     {
 
         flagRecv = 0;                // clear flag
@@ -126,7 +121,5 @@ void loop()
             Serial.print("\t");
         }
         Serial.println("HERE");
-    */
-  //}
-  
+  }
 }
